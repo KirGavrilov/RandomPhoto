@@ -77,15 +77,15 @@ class ViewController: UIViewController {
     
     //MARK: - Get Random Photo
     private func getRandomPhoto() {
+        showLoadingHUD()
         let urlString = "https://picsum.photos/600/600"
         guard let url = URL(string: urlString) else { return }
         guard let data = try? Data(contentsOf: url) else { return }
-        let seconds = 0.1
-        showLoadingHUD()
+        let seconds = 0.5
         DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
             self.viewImage.image = UIImage(data: data)
+            self.hideLoadingHud()
         }
-        hideLoadingHud()
     }
     
     //MARK: - create Gesture
